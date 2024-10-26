@@ -4,9 +4,9 @@ using Olympics.Repository.DAO;
 
 namespace Olympics.Repository.AutoMapper;
 
-public class AutoMapperProfile: Profile
+public class RepositoryAutoMapperProfile: Profile
 {
-    public AutoMapperProfile()
+    public RepositoryAutoMapperProfile()
     {
         CreateMap<CountryData, GetCountryResponse>()
             .ReverseMap();

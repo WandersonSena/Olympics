@@ -5,7 +5,7 @@ namespace Olympics.UnitTests;
 
 public class UnitTestBase
 {
-    protected static IMapper CreateAutoMapperFromProfileForTests(AutoMapperProfile profile)
+    protected static IMapper CreateAutoMapperFromProfileForTests(RepositoryAutoMapperProfile profile)
     {
         var mappingConfig = new MapperConfiguration(mc =>
         {

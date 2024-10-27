@@ -25,6 +25,15 @@ public class DtoCountryResponse
         Message = "Country created successfully";
     }
     
+    public DtoCountryResponse(CountryDao country)
+    {
+        CountryId = country.CountryId;
+        Code = country.Code;
+        Name = country.Name;
+        Population = country.Population;
+        GdpPerCapita = country.GdpPerCapita;
+    }
+    
     public DtoCountryResponse(CountryDao country, bool success, string message)
     {
         CountryId = country.CountryId;

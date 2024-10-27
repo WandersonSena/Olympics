@@ -14,5 +14,5 @@ public class OlympicResultDao
     public string OlympicEvent { get; set; }
     public OlympicMedal OlympicMedal { get; set; }
     public OlympicType OlympicType { get; set; }
-    public CountryDao AthleteCountry { get; set; }
+    public CountryDao? AthleteCountry { get; set; }
 }

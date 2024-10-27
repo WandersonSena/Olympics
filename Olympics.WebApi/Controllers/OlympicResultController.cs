@@ -45,6 +45,21 @@ public class OlympicResultController(
         }
     }
     
+    [HttpGet]
+    [Route("GetWithCountry")]
+    public ActionResult GetAllWithCountryData(int pageNumber = 1, int pageSize = 10)
+    {
+        try
+        {
+            var countries = olympicResultBusiness.GetAllWithCountryData(pageNumber, pageSize);
+            return new OkObjectResult(countries);
+        }
+        catch
+        {
+            return new BadRequestObjectResult("One ore more errors occured, please check the information provided.");
+        }
+    }
+    
     [HttpPut]
     [Route("{resultId:int}")]
     public ActionResult UpdateResultById(int resultId, [FromBody]NewOlympicResultViewModel newResultViewModel)

@@ -15,7 +15,7 @@ public class OlympicResultRepository(
     
         public int CreateNewResult(OlympicResultDao request)
         {
-            context.Set<OlympicMedalResultData>().Add(new OlympicMedalResultData
+            var newResult = new OlympicMedalResultData
             {
                 Year = request.Year,
                 OlympicCity = request.OlympicCity,
@@ -26,7 +26,19 @@ public class OlympicResultRepository(
                 OlympicEvent = request.OlympicEvent,
                 OlympicMedal = request.OlympicMedal,
                 OlympicType = request.OlympicType,
-            });
+            };
+            if (request.AthleteCountry is not null)
+            {
+                var country = context.Set<CountryData>().FirstOrDefault(c => c.Code == request.AthleteCountry.Code);
+                if (country is null)
+                {
+                    throw new ArgumentException($"Country with code {request.AthleteCountry.Code} does not exist.");
+                }
+
+                newResult.CountryId = country.CountryId;
+                newResult.AthleteCountry = country;
+            }
+            context.Set<OlympicMedalResultData>().Add(newResult);
             
             return context.SaveChanges();
         }
@@ -35,7 +47,14 @@ public class OlympicResultRepository(
         {
             var resultList = context.Set<OlympicMedalResultData>().Skip(--pageNumber * pageSize).Take(pageSize).ToList();
             return mapper.Map<List<OlympicResultDao>>(resultList);
-        }   
+        }
+        
+        public List<OlympicResultDao> GetAllWithCountryData(int pageNumber = 1, int pageSize = 10)
+        {
+            var resultList = context.Set<OlympicMedalResultData>().Include(r => r.AthleteCountry)
+                .Skip(--pageNumber * pageSize).Take(pageSize).ToList();
+            return mapper.Map<List<OlympicResultDao>>(resultList);
+        }
         
         public OlympicResultDao UpdateResultById(OlympicResultDao request)
         {
@@ -45,7 +64,6 @@ public class OlympicResultRepository(
                 throw new ArgumentException($"Country with Code {request.OlympicMedalResultId} does not exist.");
             
             }
-
             result.Year = request.Year;
             result.OlympicCity = request.OlympicCity;
             result.Sport = request.Sport;
@@ -55,6 +73,16 @@ public class OlympicResultRepository(
             result.OlympicEvent = request.OlympicEvent;
             result.OlympicMedal = request.OlympicMedal;
             result.OlympicType = request.OlympicType;
+            if (request.AthleteCountry is not null)
+            {
+                var country = context.Set<CountryData>().FirstOrDefault(c => c.Code == request.AthleteCountry.Code);
+                if (country is null)
+                {
+                    throw new ArgumentException($"Country with code {request.AthleteCountry.Code} does not exist.");
+                }
+
+                result.AthleteCountry = country;
+            }
             context.SaveChanges();
             
             return mapper.Map<OlympicResultDao>(result);

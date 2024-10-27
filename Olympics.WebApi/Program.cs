@@ -20,9 +20,11 @@ builder.Services.AddSwaggerGen();
 
 //Register business
 builder.Services.AddScoped<ICountryBusiness, CountryBusiness>();
+builder.Services.AddScoped<IOlympicResultBusiness, OlympicResultBusiness>();
 
 //Register repositories
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<IOlympicResultRepository, OlympicResultRepository>();
 
 //Add AutoMapper
 builder.Services.AddAutoMapper(typeof(WebApiAutoMapperProfile));

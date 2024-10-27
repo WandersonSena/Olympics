@@ -10,5 +10,7 @@ public class RepositoryAutoMapperProfile: Profile
     {
         CreateMap<CountryData, CountryDao>()
             .ReverseMap();
+        CreateMap<OlympicMedalResultData, OlympicResultDao>()
+            .ReverseMap();
     }
 }

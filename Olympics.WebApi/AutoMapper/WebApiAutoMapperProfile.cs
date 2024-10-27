@@ -10,5 +10,7 @@ public class WebApiAutoMapperProfile : Profile
     {
         CreateMap<NewCountryViewModel, DtoNewCountryRequest>()
             .ReverseMap();
+        CreateMap<NewOlympicResultViewModel, DtoOlympicResultRequest>()
+            .ReverseMap();
     }
 }

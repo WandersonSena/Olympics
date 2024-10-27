@@ -32,12 +32,12 @@ public class OlympicMedalResultData
     public string OlympicEvent { get; set; }
     
     [Required]
-    public string OlympicMedal { get; set; }
+    public OlympicMedal OlympicMedal { get; set; }
     
     [Required]
     public OlympicType OlympicType { get; set; }
     
-    public int CountryId { get; set; }
+    public int? CountryId { get; set; }
     
-    public CountryData AthleteCountry { get; set; }
+    public CountryData? AthleteCountry { get; set; }
 }

@@ -3,6 +3,7 @@ using Olympics.Business;
 using Olympics.Business.AutoMapper;
 using Olympics.Business.Interfaces;
 using Olympics.DataAccess;
+using Olympics.DataAccess.Seeder;
 using Olympics.Repository;
 using Olympics.Repository.AutoMapper;
 using Olympics.Repository.Interfaces;
@@ -34,6 +35,8 @@ builder.Services.AddAutoMapper(typeof(RepositoryAutoMapperProfile));
 builder.Services.AddDbContext<DataContext>(
     options => options.UseInMemoryDatabase("OlympicsDatabase")
 );
+builder.Services.AddTransient<DataSeeder>();
+
 
 var app = builder.Build();
 
@@ -49,5 +52,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+    seeder.Seed();
+}
 
 app.Run();

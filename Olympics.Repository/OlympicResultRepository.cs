@@ -31,9 +31,9 @@ public class OlympicResultRepository(
             return context.SaveChanges();
         }
         
-        public List<OlympicResultDao> GetAll()
+        public List<OlympicResultDao> GetAll(int pageNumber = 1, int pageSize = 10)
         {
-            var resultList = context.Set<OlympicMedalResultData>().ToList();
+            var resultList = context.Set<OlympicMedalResultData>().Skip(--pageNumber * pageSize).Take(pageSize).ToList();
             return mapper.Map<List<OlympicResultDao>>(resultList);
         }   
         

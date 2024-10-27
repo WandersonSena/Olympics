@@ -31,4 +31,9 @@
       <ProjectReference Include="..\Olympics.DataAccess\Olympics.DataAccess.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Seeder\Country.csv" />
+      <None Remove="Seeder\Winter.csv" />
+    </ItemGroup>
+
 </Project>

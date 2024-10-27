@@ -30,7 +30,7 @@ public class CountryRepository(
         
         public List<CountryDao> GetAll(bool includeCountryMedals = false)
         {
-            var countryData = includeCountryMedals ? context.Set<CountryData>().ToList() :
+            var countryData = !includeCountryMedals ? context.Set<CountryData>().ToList() :
                 context.Set<CountryData>().Include(c => c.OlympicMedals).ToList();
             
             return mapper.Map<List<CountryDao>>(countryData);

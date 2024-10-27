@@ -12,7 +12,7 @@ public class OlympicResultDao
     public string Athlete { get; set; }
     public GenderEnum AthleteGender { get; set; }
     public string OlympicEvent { get; set; }
-    public string OlympicMedal { get; set; }
+    public OlympicMedal OlympicMedal { get; set; }
     public OlympicType OlympicType { get; set; }
     public CountryDao AthleteCountry { get; set; }
 }

@@ -32,11 +32,11 @@ public class OlympicResultController(
     
     [HttpGet]
     [Route("")]
-    public ActionResult GetAllResults()
+    public ActionResult GetAllResults(int pageNumber = 1, int pageSize = 10)
     {
         try
         {
-            var countries = olympicResultBusiness.GetAll();
+            var countries = olympicResultBusiness.GetAll(pageNumber, pageSize);
             return new OkObjectResult(countries);
         }
         catch

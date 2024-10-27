@@ -12,12 +12,12 @@ public class OlympicResultBusiness(
 {
     public void CreateNewCountry(DtoOlympicResultRequest request)
     {
-        var userId = olympicResultRepository.CreateNewResult(mapper.Map<OlympicResultDao>(request));
+        olympicResultRepository.CreateNewResult(mapper.Map<OlympicResultDao>(request));
     }
 
-    public List<DtoOlympicResultResponse> GetAll()
+    public List<DtoOlympicResultResponse> GetAll(int pageNumber = 1, int pageSize = 10)
     {
-        var resultList = olympicResultRepository.GetAll();
+        var resultList = olympicResultRepository.GetAll(pageNumber, pageSize);
         return resultList.Select(result => new DtoOlympicResultResponse(result)).ToList();
     }
 

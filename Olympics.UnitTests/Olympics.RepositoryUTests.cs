@@ -29,7 +29,7 @@ public class Tests : UnitTestBase
         _dataContextMock.Setup(m => m.Set<CountryData>().Any()).Returns(false);
         _countryRepository = new CountryRepository(_dataContextMock.Object, CreateAutoMapperFromProfileForTests(new RepositoryAutoMapperProfile()));
         
-        _countryRepository.CreateNewCountry(new NewCountryRequest()
+        _countryRepository.CreateNewCountry(new CountryDao()
         {
             Code = "BRA",
             Name = "Brazil",

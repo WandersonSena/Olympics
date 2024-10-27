@@ -8,7 +8,7 @@ public class RepositoryAutoMapperProfile: Profile
 {
     public RepositoryAutoMapperProfile()
     {
-        CreateMap<CountryData, GetCountryResponse>()
+        CreateMap<CountryData, CountryDao>()
             .ReverseMap();
     }
 }

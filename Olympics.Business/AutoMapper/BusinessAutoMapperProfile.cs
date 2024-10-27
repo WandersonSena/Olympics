@@ -8,7 +8,7 @@ public class BusinessAutoMapperProfile : Profile
 {
     public BusinessAutoMapperProfile()
     {
-        CreateMap<DtoNewCountryRequest, NewCountryRequest>()
+        CreateMap<DtoNewCountryRequest, CountryDao>()
             .ReverseMap();
     }
 }

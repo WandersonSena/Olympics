@@ -1,14 +1,15 @@
 ﻿namespace Olympics.Repository.DAO;
 
-public class NewCountryRequest
+public class CountryDao
 {
+    public int CountryId { get; set; }
     public string Code { get; set; }
     public string Name { get; set; }
     public long Population { get; set; }
     public decimal GdpPerCapita { get; set; }
 
     
-    public void VerifyIfRequestIsValid()
+    public void VerifyIfRequiredFieldsAreValid()
     {
         if (string.IsNullOrWhiteSpace(Code))
         {

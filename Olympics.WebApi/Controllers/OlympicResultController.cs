@@ -21,7 +21,7 @@ public class OlympicResultController(
     {
         try
         {
-            olympicResultBusiness.CreateNewCountry(mapper.Map<DtoOlympicResultRequest>(newCountryViewModel));
+            olympicResultBusiness.CreateNewOlympicResult(mapper.Map<DtoOlympicResultRequest>(newCountryViewModel));
             return new CreatedResult();
         }
         catch

@@ -12,7 +12,7 @@ public class DataSeeder(DataContext context)
     }
     private void SeedSummerGames()
     {
-        context.Set<OlympicMedalResultData>().AddRange(GetOlympicGamesData("Seeder/SummerGames.csv", OlympicType.Winter));
+        context.Set<OlympicMedalResultData>().AddRange(GetOlympicGamesData("Seeder/SummerGames.csv", OlympicType.Summer));
         context.SaveChanges();
     }
     

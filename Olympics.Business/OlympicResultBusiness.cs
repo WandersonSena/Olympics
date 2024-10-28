@@ -10,10 +10,10 @@ public class OlympicResultBusiness(
     IOlympicResultRepository olympicResultRepository,
     IMapper mapper) : IOlympicResultBusiness
 {
-    public void CreateNewCountry(DtoOlympicResultRequest request)
+    public int CreateNewOlympicResult(DtoOlympicResultRequest request)
     {
         var mappedRequest = mapper.Map<OlympicResultDao>(request);
-        olympicResultRepository.CreateNewResult(mappedRequest);
+        return olympicResultRepository.CreateNewResult(mappedRequest);
     }
 
     public List<DtoOlympicResultResponse> GetAll(int pageNumber = 1, int pageSize = 10)

@@ -14,5 +14,5 @@ public class NewOlympicResultViewModel
     public string OlympicEvent { get; set; }
     public OlympicMedal OlympicMedal { get; set; }
     public OlympicType OlympicType { get; set; }
-    public string AthleteCountryCode { get; set; }
+    public string AthleteCountry { get; set; }
 }

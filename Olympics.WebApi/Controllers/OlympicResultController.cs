@@ -45,13 +45,28 @@ public class OlympicResultController(
         }
     }
     
+    [HttpGet]
+    [Route("{resultId:int}")]
+    public ActionResult GetResultById(int resultId)
+    {
+        try
+        {
+            var updatedCountry = olympicResultBusiness.GetById(resultId);
+            return new OkObjectResult(updatedCountry);
+        }
+        catch
+        {
+            return new BadRequestObjectResult("One ore more errors occured, please check the information provided.");
+        }
+    }
+    
     [HttpPut]
     [Route("{resultId:int}")]
     public ActionResult UpdateResultById(int resultId, [FromBody]NewOlympicResultViewModel newResultViewModel)
     {
         try
         {
-            var updatedCountry = olympicResultBusiness.UpdateResultById(mapper.Map<DtoOlympicResultRequest>(newResultViewModel));
+            var updatedCountry = olympicResultBusiness.UpdateResultById(resultId, mapper.Map<DtoOlympicResultRequest>(newResultViewModel));
             return new OkObjectResult(updatedCountry);
         }
         catch

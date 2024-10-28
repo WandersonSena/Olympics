@@ -38,14 +38,37 @@ public class OlympicResultRepository(
             var resultList = context.Set<OlympicMedalResultData>().Skip(--pageNumber * pageSize).Take(pageSize).ToList();
             return mapper.Map<List<OlympicResultDao>>(resultList);
         }
-       
-        public OlympicResultDao UpdateResultById(OlympicResultDao request)
+        
+        public OlympicResultDao GetById(int olympicResultId)
         {
-            var result = context.Set<OlympicMedalResultData>().FirstOrDefault(c => c.OlympicMedalResultId == request.OlympicMedalResultId);
+            var olympicResult = context.Set<OlympicMedalResultData>().FirstOrDefault(r => r.OlympicMedalResultId == olympicResultId);
+            if (olympicResult is null)
+            {
+                throw new KeyNotFoundException();
+            }
+            return mapper.Map<OlympicResultDao>(olympicResult);
+        }
+        
+        public List<OlympicResultDao> GetByCountryCode(string countryCode, int pageNumber = 1, int pageSize = 10)
+        {
+            var resultList = context.Set<OlympicMedalResultData>().Where(r => r.AthleteCountry == countryCode)
+                .Skip(--pageNumber * pageSize).Take(pageSize).ToList();
+            return mapper.Map<List<OlympicResultDao>>(resultList);
+        }
+        
+        public List<OlympicResultDao> GetByOlympicYear(int year, int pageNumber = 1, int pageSize = 10)
+        {
+            var resultList = context.Set<OlympicMedalResultData>().Where(r => r.Year == year)
+                .Skip(--pageNumber * pageSize).Take(pageSize).ToList();
+            return mapper.Map<List<OlympicResultDao>>(resultList);
+        }
+       
+        public OlympicResultDao UpdateResultById(int olympicResultId ,OlympicResultDao request)
+        {
+            var result = context.Set<OlympicMedalResultData>().FirstOrDefault(c => c.OlympicMedalResultId == olympicResultId);
             if (result is null)
             {
-                throw new ArgumentException($"Country with Code {request.OlympicMedalResultId} does not exist.");
-            
+                throw new ArgumentException($"An olympic result with Id {olympicResultId} does not exist.");
             }
             result.Year = request.Year;
             result.OlympicCity = request.OlympicCity;
@@ -62,12 +85,12 @@ public class OlympicResultRepository(
             return mapper.Map<OlympicResultDao>(result);
         }
         
-        public void DeleteResultById(int resultId)
+        public void DeleteResultById(int olympicResultId)
         {
-            var olympicMedalResult = context.Set<OlympicMedalResultData>().FirstOrDefault(c => c.OlympicMedalResultId == resultId);
+            var olympicMedalResult = context.Set<OlympicMedalResultData>().FirstOrDefault(c => c.OlympicMedalResultId == olympicResultId);
             if (olympicMedalResult is null)
             {
-                throw new ArgumentException($"Result with Id {resultId} does not exist.");
+                throw new ArgumentException($"An olympic result with Id {olympicResultId} does not exist.");
             
             }
             context.Set<OlympicMedalResultData>().Remove(olympicMedalResult);

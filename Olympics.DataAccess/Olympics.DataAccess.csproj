@@ -19,4 +19,8 @@
       <ProjectReference Include="..\Enums\Enums.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Entities\CountryData.cs" />
+    </ItemGroup>
+
 </Project>

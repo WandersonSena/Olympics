@@ -8,10 +8,6 @@ public class BusinessAutoMapperProfile : Profile
 {
     public BusinessAutoMapperProfile()
     {
-        CreateMap<DtoNewCountryRequest, CountryDao>()
-            .ReverseMap();
-        CreateMap<DtoCountryResponse, CountryDao>()
-            .ReverseMap();
         CreateMap<DtoOlympicResultRequest, OlympicResultDao>()
             .ReverseMap();
     }

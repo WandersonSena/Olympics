@@ -37,7 +37,5 @@ public class OlympicMedalResultData
     [Required]
     public OlympicType OlympicType { get; set; }
     
-    public int? CountryId { get; set; }
-    
-    public CountryData? AthleteCountry { get; set; }
+    public string AthleteCountry { get; set; }
 }

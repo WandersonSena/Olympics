@@ -15,8 +15,7 @@ public class DtoOlympicResultResponse
     public string OlympicEvent { get; set; }
     public OlympicMedal OlympicMedal { get; set; }
     public OlympicType OlympicType { get; set; }
-    
-    public DtoCountryResponse? AthleteCountry { get; set; }
+    public string AthleteCountry { get; set; }
 
     public DtoOlympicResultResponse(OlympicResultDao resultDao)
     {
@@ -26,24 +25,10 @@ public class DtoOlympicResultResponse
         Sport = resultDao.Sport;
         Discipline = resultDao.Discipline;
         Athlete = resultDao.Athlete;
+        AthleteCountry = resultDao.AthleteCountry;
         AthleteGender = resultDao.AthleteGender;
         OlympicEvent = resultDao.OlympicEvent;
         OlympicMedal = resultDao.OlympicMedal;
         OlympicType = resultDao.OlympicType;
-    }
-    
-    public DtoOlympicResultResponse(OlympicResultDao resultDao, DtoCountryResponse athleteCountry)
-    {
-        OlympicMedalResultId = resultDao.OlympicMedalResultId;
-        Year = resultDao.Year;
-        OlympicCity = resultDao.OlympicCity;
-        Sport = resultDao.Sport;
-        Discipline = resultDao.Discipline;
-        Athlete = resultDao.Athlete;
-        AthleteGender = resultDao.AthleteGender;
-        OlympicEvent = resultDao.OlympicEvent;
-        OlympicMedal = resultDao.OlympicMedal;
-        OlympicType = resultDao.OlympicType;
-        AthleteCountry = athleteCountry;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Enums;
 using Olympics.Business.DTO;
 using Olympics.Business.Interfaces;
 using Olympics.Repository.DAO;
@@ -33,10 +34,28 @@ public class OlympicResultBusiness(
         var resultList = olympicResultRepository.GetByCountryCode(countryCode, pageNumber, pageSize);
         return resultList.Select(result => new DtoOlympicResultResponse(result)).ToList();
     }
+    
+    public List<DtoOlympicResultResponse> GetAllCountryMedalsByMedalType(string countryCode, OlympicMedal medalType)
+    {
+        var resultList = olympicResultRepository.GetByCountryCode(countryCode).Where(r => r.OlympicMedal == medalType);
+        return resultList.Select(result => new DtoOlympicResultResponse(result)).ToList();
+    }
+    
+    public List<DtoOlympicResultResponse> GetAllCountryMedalsFromYear(string countryCode, int year)
+    {
+        var resultList = olympicResultRepository.GetByCountryCode(countryCode).Where(r => r.Year == year);
+        return resultList.Select(result => new DtoOlympicResultResponse(result)).ToList();
+    }
 
     public List<DtoOlympicResultResponse> GetByOlympicYear(int olympicYear, int pageNumber = 1, int pageSize = 10)
     {
         var resultList = olympicResultRepository.GetByOlympicYear(olympicYear, pageNumber, pageSize);
+        return resultList.Select(result => new DtoOlympicResultResponse(result)).ToList();
+    }
+    
+    public List<DtoOlympicResultResponse> GetByOlympicSportAndYear(int olympicYear, string sportName)
+    {
+        var resultList = olympicResultRepository.GetByOlympicYear(olympicYear).Where(m => m.Sport == sportName);
         return resultList.Select(result => new DtoOlympicResultResponse(result)).ToList();
     }
 

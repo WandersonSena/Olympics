@@ -6,17 +6,17 @@ namespace Olympics.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CountryController(
+public class OlympicsController(
     IOlympicResultBusiness olympicResultBusiness, 
     IMapper mapper) : ControllerBase
 {
     [HttpGet]
-    [Route("{countryCode}")]
-    public ActionResult GetAllResults(string countryCode, int pageNumber = 1, int pageSize = 10)
+    [Route("{olympicYear:int}")]
+    public ActionResult GetAllResults(int olympicYear, int pageNumber = 1, int pageSize = 10)
     {
         try
         {
-            var countries = olympicResultBusiness.GetByCountryCode(countryCode, pageNumber, pageSize);
+            var countries = olympicResultBusiness.GetByOlympicYear(olympicYear, pageNumber, pageSize);
             return new OkObjectResult(countries);
         }
         catch

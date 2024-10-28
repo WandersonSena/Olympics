@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Olympics.Business\Olympics.Business.csproj" />
       <ProjectReference Include="..\Olympics.Repository\Olympics.Repository.csproj" />
     </ItemGroup>
 

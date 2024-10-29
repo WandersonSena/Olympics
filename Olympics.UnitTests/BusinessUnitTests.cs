@@ -14,7 +14,7 @@ using Olympics.Repository.Interfaces;
 
 namespace Olympics.UnitTests;
 
-public class OlympicBusinesUnitTests : UnitTestBase
+public class OlympicBusinessUnitTests : UnitTestBase
 {
     private OlympicResultBusiness olympicResultBusiness;
     private Mock<IOlympicResultRepository> olympicResultRepositoryMock;

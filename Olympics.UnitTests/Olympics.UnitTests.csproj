@@ -25,6 +25,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Olympics.Business\Olympics.Business.csproj" />
       <ProjectReference Include="..\Olympics.Repository\Olympics.Repository.csproj" />
+      <ProjectReference Include="..\Olympics.WebApi\Olympics.WebApi.csproj" />
     </ItemGroup>
 
 </Project>

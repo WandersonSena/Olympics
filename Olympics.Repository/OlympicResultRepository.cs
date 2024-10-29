@@ -49,10 +49,22 @@ public class OlympicResultRepository(
             return mapper.Map<OlympicResultDao>(olympicResult);
         }
         
+        public List<OlympicResultDao> GetByCountryCode(string countryCode)
+        {
+            var resultList = context.Set<OlympicMedalResultData>().Where(r => r.AthleteCountry == countryCode).ToList();
+            return mapper.Map<List<OlympicResultDao>>(resultList);
+        }
+        
         public List<OlympicResultDao> GetByCountryCode(string countryCode, int pageNumber = 1, int pageSize = 10)
         {
             var resultList = context.Set<OlympicMedalResultData>().Where(r => r.AthleteCountry == countryCode)
                 .Skip(--pageNumber * pageSize).Take(pageSize).ToList();
+            return mapper.Map<List<OlympicResultDao>>(resultList);
+        }
+        
+        public List<OlympicResultDao> GetByOlympicYear(int year)
+        {
+            var resultList = context.Set<OlympicMedalResultData>().Where(r => r.Year == year).ToList();
             return mapper.Map<List<OlympicResultDao>>(resultList);
         }
         

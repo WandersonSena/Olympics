@@ -1,0 +1,28 @@
+<body>
+<div class="w-100 home-title d-inline-grid align-content-center">
+  <h1 class="text-center ">Olympics API</h1>
+  <p class="text-center">
+    Welcome to the olympics api<br>
+    This project contains all the athletes that won an olympic medal since 1896 to 2014.
+    Fell free to fetch data by country or by olympic year.
+  </p>
+</div>
+    <div class="p-5 w-100 nav-bar-container card-body">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <button ngbNavLink>Search results per country</button>
+          <ng-template ngbNavContent>
+            <app-country></app-country>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <button ngbNavLink>Search results per olympic year</button>
+          <ng-template ngbNavContent>
+            <app-olympic></app-olympic>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</body>
+

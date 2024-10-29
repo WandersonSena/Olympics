@@ -24,4 +24,19 @@ public class OlympicsController(
             return new BadRequestObjectResult("One ore more errors occured, please check the information provided.");
         }
     }
+    
+    [HttpGet]
+    [Route("{olympicYear:int}/sport/{sportName}")]
+    public ActionResult GetAllResults(int olympicYear, string sportName)
+    {
+        try
+        {
+            var countries = olympicResultBusiness.GetByOlympicSportAndYear(olympicYear, sportName);
+            return new OkObjectResult(countries);
+        }
+        catch
+        {
+            return new BadRequestObjectResult("One ore more errors occured, please check the information provided.");
+        }
+    }
 }

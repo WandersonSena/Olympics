@@ -1,0 +1,12 @@
+.home-title {
+  height: 100vh;
+  color:
+    #fff;
+  background-image: url("../app/shared/images/Home-1.jpg");
+  background-size: 100%;
+  background-size: cover;
+}
+
+.nav-bar-container {
+  min-height: 75vh;
+}
